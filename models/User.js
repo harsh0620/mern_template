@@ -25,18 +25,6 @@ const UserSchema = new mongoose.Schema({
     minlength: 6,
     select: false,
   },
-  lastName: {
-    type: String,
-    maxlength: 20,
-    trim: true,
-    default: "lastName",
-  },
-  location: {
-    type: String,
-    maxlength: 30,
-    trim: true,
-    default: "Udaipur,Rajasthan",
-  },
 });
 UserSchema.pre("save", async function () {
   if (!this.isModified("password")) return;

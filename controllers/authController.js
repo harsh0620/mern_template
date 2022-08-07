@@ -16,11 +16,8 @@ const register = async (req, res, next) => {
     user: {
       email: user.email,
       name: user.name,
-      lastName: user.lastName,
-      location: user.location,
     },
     token,
-    location: user.location,
   });
 };
 
@@ -40,12 +37,12 @@ const login = async (req, res) => {
   }
   const token = user.createJWT();
   user.password = undefined;
-  res.status(StatusCodes.OK).json({ user, token, location: user.location });
+  res.status(StatusCodes.OK).json({ user, token });
 };
 
 const updateUser = async (req, res) => {
-  const { email, name, lastName, location } = req.body;
-  if (!email || !name || !lastName || !location) {
+  const { email, name } = req.body;
+  if (!email || !name) {
     throw new BadRequestError("Please provide all values");
   }
 
@@ -53,8 +50,6 @@ const updateUser = async (req, res) => {
 
   user.email = email;
   user.name = name;
-  user.lastName = lastName;
-  user.location = location;
 
   await user.save();
 
@@ -66,7 +61,6 @@ const updateUser = async (req, res) => {
   res.status(StatusCodes.OK).json({
     user,
     token,
-    location: user.location,
   });
 };
 

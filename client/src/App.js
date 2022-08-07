@@ -24,8 +24,9 @@ function App() {
           <Route index element={<Example1 />} />
           <Route path="example2" element={<Example2 />}></Route>
         </Route>
-        <Route path="/register" element={<Register />} />
+
         <Route path="/landing" element={<Landing />} />
+        <Route path="/register" element={<Register />} />
         <Route path="*" element={<Error />} />
       </Routes>
     </BrowserRouter>
